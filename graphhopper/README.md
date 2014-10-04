@@ -1,15 +1,15 @@
 # Graphhopper Dockerfile
 
-This Dockerfile builds image with grapphopper web app installed. You provide .pbf files through /data mount point. Please refer to instructions bellow.
+This Dockerfile builds image with grapphopper web app installed. You need to provide .pbf files through /data mount point. Please refer to instructions bellow.
 
 ### Building image
 
-Take a look on files in asset directory:
+Take a look on files in assets directory:
 * config.properties - graphhopper properties.
 * start.sh - graphhopper run script. You can customize JAVA\_OPTS here (heap size, etc.).
-* init.sh -  downloads and extract installation .zip file to /graphhopper directory.
+* init.sh -  downloads and extracts installation .zip file to /graphhopper directory.
 
-Make necessary changes and build image:
+Make necessary changes in config files and build image:
 
 ```
 $ sudo docker build -t sogorkis/graphopper .
@@ -29,7 +29,9 @@ wget http://download.geofabrik.de/europe/germany/berlin-latest.osm.pbf
 
 ### Running container
 
-When running container, mount directory where .pbf file is placed to container /data volume. Moreover do not forget about port mapping. First container run processes .pbf file and creates additional work files, so it may take some time. Tail logs till you see that server is started.
+When running container, you have to mount directory where .pbf file is placed to container /data volume. Moreover do not forget about port mapping.
+
+Initial container run might take some time as GraphHopper needs to processes .pbf file and create additional work files. Tail logs till you see that server is started.
 
 
 ```
@@ -46,6 +48,6 @@ $ sudo docker logs -f graphhopper-berlin
 2014-10-04 11:21:30,611 [main] INFO  graphhopper.http.GHServer - Started server at HTTP 8989
 ```
 
-Check if web interface is available: http://localhost:8990/
+Check if web interface is available: [http://localhost:8990/](http://localhost:8990/)
 
-You can easily run more instances of Grapphopper on different ports. Please make sure that you use separate directories containing .pbf file and additional graphhopper work files. 
+You can easily run more instances of Grapphopper on different ports. Please make sure that you use separate directories for .pbf file and additional graphhopper work files. 
