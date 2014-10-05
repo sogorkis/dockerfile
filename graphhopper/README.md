@@ -12,7 +12,7 @@ Take a look on files in assets directory:
 Make necessary changes in config files and build image:
 
 ```
-$ sudo docker build -t sogorkis/graphopper .
+$ sudo docker build -t sogorkis/graphhopper .
 ```
 
 ### Downloading pbf files
@@ -40,7 +40,7 @@ $ sudo docker run \
       --name=graphhopper-berlin \
       -v /home/stanislaw/private/graphhopper-data/berlin/:/data \
       -p 8990:8989 \
-      sogorkis/graphopper \
+      sogorkis/graphhopper \
       /graphhopper/start.sh
 $ sudo docker logs -f graphhopper-berlin
 ...
