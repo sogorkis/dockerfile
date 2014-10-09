@@ -51,3 +51,14 @@ $ sudo docker logs -f graphhopper-berlin
 Check if web interface is available: [http://localhost:8990/](http://localhost:8990/)
 
 You can easily run more instances of Grapphopper on different ports. Please make sure that you use separate directories for .pbf file and additional graphhopper work files. 
+
+### Customizing JAVA\_OPTS
+
+You can change JAVA\_OPTS by creating env.sh file in mounted directory. This can be usefull when you want to change heap size.
+
+Example (use only 128MB for heap):
+
+```
+$ cat /home/stanislaw/private/graphhopper-data/berlin/env.sh
+JAVA_OPTS="-Xms128m -Xmx128m -XX:MaxPermSize=64m -Djava.net.preferIPv4Stack=true -server -Djava.awt.headless=true -Xconcurrentio"
+```
